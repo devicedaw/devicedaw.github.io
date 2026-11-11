@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0c0e">
+  <title>Device Studio — Built for real time.</title>
+  <meta name="description" content="An open-source digital audio workstation for macOS, Windows and Linux. Record, arrange and shape your sound. Device Studio is in pre-alpha and available to build from source.">
+  <link rel="canonical" href="https://devicedaw.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Device Studio">
+  <meta property="og:title" content="Device Studio — Built for real time.">
+  <meta property="og:description" content="An open-source studio for recording, arranging and shaping sound. In development for macOS, Windows and Linux.">
+  <meta property="og:url" content="https://devicedaw.github.io/">
+  <meta property="og:image" content="https://devicedaw.github.io/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Device Studio, an open-source digital audio workstation. Built for real time.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#" aria-label="Device Studio home"><img src="assets/mark.svg" width="32" height="32" alt=""><span>Device<span class="brand-light"> Studio</span></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button>
+      <nav id="navigation" aria-label="Main navigation">
+        <a href="#explore">Explore</a><a href="#status">Project status</a><a href="#build">Build from source</a>
+        <a class="nav-source" href="https://github.com/chrislaupama/device">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-overline"><p class="eyebrow"><span class="signal" aria-hidden="true"></span> Open-source music production</p><a class="version-label" href="#status">PRE-ALPHA <span aria-hidden="true">↗</span></a></div>
+      <div class="hero-grid">
+        <h1 id="hero-title">Built for<br><span>real time.</span></h1>
+        <div class="hero-intro">
+          <p class="lead">A place to turn<br> ideas into sound.</p>
+          <p>Record, arrange, shape and mix in an open-source digital audio workstation for macOS, Windows and Linux.</p>
+          <div class="hero-actions"><a class="button primary" href="#build">Build from source <span aria-hidden="true">↗</span></a><a class="text-link" href="#explore">Take a closer look <span aria-hidden="true">↓</span></a></div>
+          <p class="small-note">In active development. No public release yet.</p>
+        </div>
+      </div>
+      <figure class="hero-product">
+        <div class="window-top" aria-hidden="true"><span class="window-dots"><i></i><i></i><i></i></span><span>Device Studio / Arrangement &amp; automation</span><span class="window-tag">APP VIEW</span></div>
+        <a class="screenshot-link" href="assets/automation.webp" aria-label="Open the full-size Device Studio arrangement screenshot"><img src="assets/automation.webp" width="2880" height="1552" fetchpriority="high" alt="Device Studio interface with track automation lanes and the built-in Synth oscillator controls."></a>
+        <figcaption><span>Real interface. Real work in progress.</span><span>macOS <b>·</b> Windows <b>·</b> Linux</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="capability-strip" aria-label="At a glance"><div class="shell"><span><i class="pink" aria-hidden="true"></i>Audio &amp; MIDI</span><span><i class="orange" aria-hidden="true"></i>Built-in instruments &amp; effects</span><span><i class="yellow" aria-hidden="true"></i>Automation &amp; modulation</span><span><i class="blue" aria-hidden="true"></i>AU · VST3 · CLAP</span></div></div>
+
+    <section id="explore" class="section shell" aria-labelledby="explore-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / Inside the studio</p><h2 id="explore-title">Follow the idea.</h2></div><p>From a first note to the smallest detail.<br>The tools belong in the flow.</p></div>
+      <div class="tour-controls" role="group" aria-label="Choose an interface view">
+        <button type="button" aria-pressed="true" aria-controls="view-arrange" data-view="arrange"><span class="tour-number">01</span> Arrange <span aria-hidden="true">↗</span></button>
+        <button type="button" aria-pressed="false" aria-controls="view-shape" data-view="shape"><span class="tour-number">02</span> Shape <span aria-hidden="true">↗</span></button>
+        <button type="button" aria-pressed="false" aria-controls="view-modulate" data-view="modulate"><span class="tour-number">03</span> Modulate <span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="tour-views">
+        <figure id="view-arrange" class="tour-view" data-panel="arrange"><div class="tour-image"><img src="assets/automation.webp" width="2880" height="1552" loading="lazy" alt="Volume, pan and synth cutoff automation displayed as editable lanes in Device Studio."></div><figcaption><h3>Give every part its place.</h3><p>Record or import audio, arrange clips, write MIDI parts in the piano roll, and draw automation for the parameters that matter.</p></figcaption></figure>
+        <figure id="view-shape" class="tour-view" data-panel="shape"><div class="tour-image"><img src="assets/analyzers.webp" width="2880" height="1552" loading="lazy" alt="Device Studio's Pitch Corrector, Tuner and Spectrum devices open in the device chain."></div><figcaption><h3>Find the character in your sound.</h3><p>Start with a synth, sampler, drum rack or pad sampler. Add dynamics, EQ, saturation, space and restoration, with analysis tools to see what you hear.</p></figcaption></figure>
+        <figure id="view-modulate" class="tour-view" data-panel="modulate"><div class="tour-image"><img src="assets/lfo.webp" width="2880" height="1552" loading="lazy" alt="The built-in LFO configured beside a Compressor in Device Studio."></div><figcaption><h3>Make a little movement go further.</h3><p>Drive device parameters with an LFO, draw automation, or group effects into Chains with eight macro controls.</p></figcaption></figure>
+      </div>
+      <p class="image-note">Views rendered by Device Studio. The interface is evolving.</p>
+      <div class="feature-columns">
+        <article><span class="feature-icon" aria-hidden="true">∿</span><h3>Your plugins, too.</h3><p>Host VST3 and CLAP plugins, plus Audio Units on macOS. Plugin scanning runs in a separate process.</p></article>
+        <article><span class="feature-icon" aria-hidden="true">↶</span><h3>Room to change your mind.</h3><p>Project edits go through undoable commands, so you can explore an idea and find your way back.</p></article>
+        <article><span class="feature-icon" aria-hidden="true">⌁</span><h3>Built around real-time audio.</h3><p>A C++23 audio engine, a Rust application and a GPU-drawn interface, with performance checks alongside development.</p></article>
+      </div>
+    </section>
+
+    <section class="open-section" aria-labelledby="open-title"><div class="shell open-grid">
+      <div><p class="eyebrow">02 / Open by design</p><h2 id="open-title">A studio you<br>can look inside.</h2></div>
+      <div class="open-copy"><p class="lead">The source is part of the instrument.</p><p>Explore how Device works. Build it yourself. Study it, change it and share it under the AGPL-3.0-or-later license.</p><p>The code, architecture notes and development progress are public. Outside contributions aren’t open yet, but reading, building and forking are welcome.</p><div class="inline-links"><a class="text-link" href="https://github.com/chrislaupama/device">Explore the source <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/chrislaupama/device/blob/main/docs/architecture.md">Read the architecture <span aria-hidden="true">↗</span></a></div></div>
+    </div></section>
+
+    <section id="status" class="section shell status-section" aria-labelledby="status-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / Where things stand</p><h2 id="status-title">Early. And moving.</h2></div><p>Device Studio is pre-alpha.<br>Here’s what that means today.</p></div>
+      <div class="status-grid">
+        <div class="status-summary"><div class="status-stamp"><span class="signal" aria-hidden="true"></span> IN DEVELOPMENT</div><h3>Build it.<br> Explore it.<br> Expect change.</h3><p>Features are still taking shape and the project format may change. Keep backups of your projects and audio.</p><a class="text-link" href="https://github.com/chrislaupama/device/blob/main/PROGRESS.md">Follow development <span aria-hidden="true">↗</span></a></div>
+        <div class="status-details">
+          <details open><summary>Can I download Device Studio?<span aria-hidden="true">+</span></summary><p>There’s no public release yet. You can build the app from source now. Tagged releases will appear on the <a href="https://github.com/chrislaupama/device/releases">GitHub releases page</a> when they’re ready.</p></details>
+          <details><summary>Which platforms does it support?<span aria-hidden="true">+</span></summary><p>macOS on Apple silicon is the primary development and audio hardware-testing platform. Windows x64 and Linux x64 builds run in CI. Their audio backends haven’t been tested on physical sound cards yet; Linux also runs headless PipeWire streams in CI.</p></details>
+          <details><summary>What is still being worked on?<span aria-hidden="true">+</span></summary><p>The app, platform support and release packaging are all evolving. The <a href="https://github.com/chrislaupama/device#status">main repository’s status table</a> is the source of truth for current capabilities and limitations.</p></details>
+          <details><summary>Can I contribute or report a problem?<span aria-hidden="true">+</span></summary><p>Issues, pull requests and comments are currently limited to the maintainer. You’re welcome to read, build and fork the code. See the <a href="https://github.com/chrislaupama/device/blob/main/CONTRIBUTING.md">contribution guide</a> for updates. Security issues can be <a href="https://github.com/chrislaupama/device/blob/main/SECURITY.md">reported privately</a>.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="build" class="build-section" aria-labelledby="build-title"><div class="shell">
+      <div class="build-heading"><p class="eyebrow">04 / Get started</p><h2 id="build-title">Your next session<br>starts at the source.</h2><p>For now, Device is for curious musicians and developers<br class="desktop-break"> who are comfortable building an app.</p></div>
+      <div class="build-grid">
+        <div class="build-requirements"><h3>Before you start</h3><p>Install Rust 1.90+, CMake 3.25+, Ninja and a C++23 compiler. Platform-specific dependencies and setup steps are in the build guide.</p><a class="button primary" href="https://github.com/chrislaupama/device/blob/main/docs/building.md">Read the build guide <span aria-hidden="true">↗</span></a></div>
+        <div class="terminal"><div class="terminal-header"><span>BUILD &amp; OPEN THE DEMO</span><button id="copy-command" type="button">Copy commands</button></div><pre><code id="build-command">git clone https://github.com/chrislaupama/device.git
+cd device
+cargo run --release -p dstudio-app -- --demo</code></pre><p id="copy-status" class="copy-status" role="status" aria-live="polite">Cargo builds the audio engine too.</p></div>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="site-footer shell"><div class="footer-top"><a class="brand" href="#" aria-label="Device Studio home"><img src="assets/mark.svg" width="32" height="32" alt=""><span>Device<span class="brand-light"> Studio</span></span></a><p>Built for real time.<br>Made in the open.</p><nav aria-label="Footer navigation"><a href="https://github.com/chrislaupama/device">Source code <span aria-hidden="true">↗</span></a><a href="https://github.com/chrislaupama/device/blob/main/docs/building.md">Documentation <span aria-hidden="true">↗</span></a><a href="https://github.com/devicedaw">Device Studio on GitHub <span aria-hidden="true">↗</span></a></nav></div><div class="footer-bottom"><span>Device Studio · An open-source project</span><a href="https://github.com/chrislaupama/device/blob/main/LICENSE">AGPL-3.0-or-later</a><a href="https://github.com/devicedaw/devicedaw.github.io">Website source <span aria-hidden="true">↗</span></a><span>No analytics. No tracking scripts.</span></div></footer>
+</body>
+</html>
