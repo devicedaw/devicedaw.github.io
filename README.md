@@ -31,13 +31,13 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 
 ## Structure
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Content, links, accessible controls and sharing metadata |
-| `styles.css` | Responsive layout and Device's existing visual identity |
-| `site.js` | Progressive enhancement; no framework or runtime dependencies |
-| `assets/` | Local screenshots, waveform mark, social image and fonts |
-| `404.html` | A useful return path for missing pages |
+| File         | Purpose                                                       |
+| ------------ | ------------------------------------------------------------- |
+| `index.html` | Content, links, accessible controls and sharing metadata      |
+| `styles.css` | Responsive layout and Device's existing visual identity       |
+| `site.js`    | Progressive enhancement; no framework or runtime dependencies |
+| `assets/`    | Local screenshots, waveform mark, social image and fonts      |
+| `404.html`   | A useful return path for missing pages                        |
 
 ## License
 
