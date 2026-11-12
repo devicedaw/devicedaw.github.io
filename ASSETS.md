@@ -1,20 +1,52 @@
 # Asset provenance
 
-Existing Device identity and application screenshots are reused from [devicedaw/device at 52293a1](https://github.com/devicedaw/device/tree/52293a1ed939f12ee0db13413e89fefddfd831cd). No generated or third-party product mockups are presented as app screenshots.
+Every image of the app on this site was rendered by Device itself, from
+[devicedaw/device at bddb701](https://github.com/devicedaw/device/tree/bddb701068b3783a859276080709164f03e5bc37).
+No generated or third-party mockups are presented as app screenshots. The views show development review states,
+not a finished musical project.
 
-The public name and social-preview artwork were refreshed from the project's own HTML artwork
-sources in [the Device branding update](https://github.com/devicedaw/device/commit/2bedea2).
-The waveform design and the app screenshots remain the project's original work.
+| Website asset                      | Original source                                               |
+| ---------------------------------- | ------------------------------------------------------------- |
+| `assets/mark.svg`                  | `docs/art/mark.svg`, Device's blue sine-wave mark             |
+| `assets/social-preview.png`        | `docs/assets/art/social-preview.png`                          |
+| `assets/shots/automation-*.webp`   | `docs/art/shots/automation.png` (`--state review-automation`) |
+| `assets/shots/analyzers-1440.webp` | `docs/art/shots/analyzers.png` (`--state review-analyzers`)   |
+| `assets/shots/lfo-1440.webp`       | `docs/art/shots/lfo.png` (`--state reference-lfo`)            |
+| `assets/shots/arrange-1440.webp`   | rendered with `--state reference-audio-clip`                  |
+| `assets/shots/pianoroll-1440.webp` | rendered with `--state review-pr-velocity`                    |
+| `assets/shots/recording-1440.webp` | rendered with `--state review-recording`                      |
+| `assets/shots/mixer-1440.webp`     | rendered with `--state review-returns`                        |
+| `assets/shots/export-1440.webp`    | rendered with `--state review-export-stems`                   |
+| `assets/fonts/Inter-*.woff2`       | `crates/dstudio-app/ui/fonts/Inter-*.ttf`, subset to Latin    |
 
-| Website asset               | Original source                                           |
-| --------------------------- | --------------------------------------------------------- |
-| `assets/mark.svg`           | `docs/art/mark.svg`, Device's blue sine-wave mark         |
-| `assets/automation.webp`    | `docs/art/shots/automation.png`, lossless WebP conversion |
-| `assets/analyzers.webp`     | `docs/art/shots/analyzers.png`, lossless WebP conversion  |
-| `assets/lfo.webp`           | `docs/art/shots/lfo.png`, lossless WebP conversion        |
-| `assets/social-preview.png` | `docs/assets/art/social-preview.png`                      |
-| `assets/fonts/Inter-*.ttf`  | `crates/dstudio-app/ui/fonts/Inter-*.ttf`                 |
+## Regenerating
 
-The app views were rendered by Device, as described in its `docs/art/README.md`. They depict development review states, not a completed musical project. The screenshot contents are unaltered; WebP is used only for lossless file-size reduction.
+App views are rendered the way the app's `docs/art/README.md` describes, at 2x with the Linux menu bar cropped:
 
-Device artwork is covered by the source repository's AGPL-3.0-or-later license. Inter retains its SIL Open Font License, included beside the font files. The CSS uses Device's existing blue, audio pink, instrument orange and automation yellow.
+```sh
+SLINT_SCALE_FACTOR=2 SLINT_WGPU_CPU=1 WGPU_BACKEND=vulkan xvfb-run -a -s "-screen 0 3200x2000x24" \
+  target/release/device-studio --no-audio --zoom 85 --state review-returns \
+  --screenshot /tmp/mixer.png --exit-after-frames 5
+magick /tmp/mixer.png -gravity north -chop 0x88 /tmp/mixer-crop.png
+```
+
+Then convert to WebP. Only the large product view keeps a 2880-pixel version; the tour images are 1440 pixels wide.
+
+```sh
+cwebp -q 88 -m 6 -sharp_yuv -resize 1440 0 /tmp/mixer-crop.png -o assets/shots/mixer-1440.webp
+cwebp -q 88 -m 6 -sharp_yuv /tmp/automation.png -o assets/shots/automation-2880.webp
+```
+
+Fonts are subset with fontTools (`pip install fonttools brotli`):
+
+```sh
+pyftsubset Inter-Bold.ttf --flavor=woff2 --output-file=assets/fonts/Inter-Bold.woff2 \
+  --layout-features='kern,liga,calt,tnum,ss01,cv11,case' \
+  --unicodes="U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+221E,U+2248,U+2260,U+2264,U+2265,U+00B5,U+03BC,U+2318,U+21E7,U+2713,U+2715,U+00D7"
+```
+
+## Licences
+
+Device artwork is covered by the source repository's AGPL-3.0-or-later license. Inter retains its SIL Open Font
+License, included beside the font files. The colours are the app's own tokens from
+`crates/dstudio-app/ui/tokens.slint`.
