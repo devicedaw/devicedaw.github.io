@@ -18,7 +18,7 @@ Open http://127.0.0.1:4173. Edit `index.html`, `styles.css` and `site.js`, then 
 
 GitHub Pages serves `/` from the `main` branch. Pushing to `main` publishes the site using GitHub's Pages build. `.nojekyll` makes this a plain static site. This repository is the organization website, so its name must remain `devicedaw.github.io` for the default root URL.
 
-No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. `site.js` adds the hero scope and its playable sketch (Web Audio, started only by a click), the interface markers, the scroll tour, the device filter, mobile navigation and command copying. Every section stays readable without JavaScript, and motion is switched off for visitors who ask for reduced motion.
+No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. `site.js` adds the hero scope, the interface markers, the scroll tour, the device filter, mobile navigation and command copying. Every section stays readable without JavaScript, and motion is switched off for visitors who ask for reduced motion.
 
 ## Keep content accurate
 
@@ -28,7 +28,7 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 - Application facts and screenshots were sourced from app commit `bddb701068b3783a859276080709164f03e5bc37` on 12 November 2026. See `ASSETS.md` for asset provenance and how to regenerate the images and fonts.
 - The device catalog lists the 44 built-in devices from the app README's table. Update the counts on the filter buttons when it changes.
 - If hosting moves, update the canonical URL, Open Graph URL/image, `robots.txt` and `sitemap.xml`.
-- Check desktop and mobile layouts, keyboard focus, the interface markers, the scroll tour, the device filter, the sketch button, the mobile menu and the copy button before publishing. Run `node --check site.js` and check all local asset paths.
+- Check desktop and mobile layouts, keyboard focus, the interface markers, the scroll tour, the device filter, the mobile menu and the copy button before publishing. Run `node --check site.js` and check all local asset paths.
 
 ## Performance budget
 
