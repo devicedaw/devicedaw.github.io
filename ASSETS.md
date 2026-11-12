@@ -50,3 +50,17 @@ pyftsubset Inter-Bold.ttf --flavor=woff2 --output-file=assets/fonts/Inter-Bold.w
 Device artwork is covered by the source repository's AGPL-3.0-or-later license. Inter retains its SIL Open Font
 License, included beside the font files. The colours are the app's own tokens from
 `crates/dstudio-app/ui/tokens.slint`.
+
+## Fine Signal branding texture
+
+`assets/fine-signal.avif` (41,945 bytes) and its WebP fallback (144,974 bytes)
+are compressed versions of `devicedaw/device`'s
+`docs/art/textures/fine-signal.png`. The original bitmap was generated for
+Device with OpenAI image generation on 13 November 2026; its exact prompt is
+kept beside the source as `fine-signal-prompt.txt`. It supplies only decorative
+blue dots and light falloff behind the website and public artwork. App views,
+the logo and desktop app styles are unchanged.
+
+The social preview was rendered from the same repository's HTML artwork with
+that texture; the app screenshot inside it remains the app's own output.
+The website prefers AVIF through CSS image-set and uses WebP otherwise.

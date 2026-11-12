@@ -32,7 +32,7 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 
 ## Performance budget
 
-The page has no third-party requests. Keep the first view under 300 KB transferred (it is about 270 KB on a 2x desktop screen and 210 KB on a phone) and the whole page under 600 KB after scrolling to the end. Screenshots are lossy WebP at quality 88, fonts are Latin subsets in WOFF2, and the hero scope only animates while it is on screen.
+The page has no third-party requests. Keep the first view under 300 KB transferred (the Fine Signal material adds about 42 KB on browsers with AVIF support; remeasure the total when changing assets) and the whole page under 600 KB after scrolling to the end. Screenshots are lossy WebP at quality 88, fonts are Latin subsets in WOFF2, and the hero scope only animates while it is on screen.
 
 ## Structure
 
@@ -41,7 +41,7 @@ The page has no third-party requests. Keep the first view under 300 KB transferr
 | `index.html` | Content, links, accessible controls and sharing metadata      |
 | `styles.css` | Responsive layout, using the app's colour tokens              |
 | `site.js`    | Progressive enhancement; no framework or runtime dependencies |
-| `assets/`    | App views (`shots/`), the mark, the social image and fonts    |
+| `assets/`    | App views (`shots/`), the mark, Fine Signal texture, social image and fonts    |
 | `404.html`   | A useful return path for missing pages                        |
 
 ## License
