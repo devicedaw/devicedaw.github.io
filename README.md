@@ -1,6 +1,6 @@
-# Device Studio website
+# Device website
 
-The official public website for [Device Studio](https://github.com/devicedaw/device), an open-source digital audio workstation.
+The official public website for [Device](https://github.com/devicedaw/device), an open-source digital audio workstation.
 
 **Live site:** https://devicedaw.github.io/
 
