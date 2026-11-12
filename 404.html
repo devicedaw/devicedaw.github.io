@@ -2,28 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0b0c0e" />
     <title>Page not found — Device</title>
     <link rel="icon" href="/assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body>
-    <main class="shell section">
+  <body class="not-found">
+    <main class="shell">
       <a class="brand" href="/"
-        ><img src="/assets/mark.svg" alt="" width="32" height="32" />Device
-        Studio</a
+        ><img src="/assets/mark.svg" alt="" width="28" height="28" /><span
+          >Device</span
+        ></a
       >
-      <p class="eyebrow" style="margin-top: 70px; margin-bottom: 25px">
-        404 / Page not found
-      </p>
-      <h1 style="font-size: clamp(48px, 8vw, 100px)">Lost in the mix?</h1>
-      <p style="margin-top: 28px; margin-bottom: 28px">
-        This page doesn’t exist. Let’s get you back to the studio.
-      </p>
-      <a class="button primary" href="/"
-        >Back to Device <span aria-hidden="true">↗</span></a
+      <div class="not-found-body">
+        <p class="eyebrow"><span>404</span> Page not found</p>
+        <h1>Silence<br />on this track.</h1>
+        <p class="section-intro">
+          There’s nothing at this address. Head back to the start of the
+          session.
+        </p>
+        <a class="button primary" href="/"
+          >Back to Device<span aria-hidden="true">→</span></a
+        >
+      </div>
+      <svg
+        class="flatline"
+        viewBox="0 0 1200 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
       >
+        <path
+          d="M0 40 H520 C 545 40 552 8 575 8 S 605 72 628 72 S 655 40 680 40 H1200"
+        />
+      </svg>
     </main>
   </body>
 </html>
