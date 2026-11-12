@@ -2,6 +2,10 @@
 
 Existing Device identity and application screenshots are reused from [devicedaw/device at 52293a1](https://github.com/devicedaw/device/tree/52293a1ed939f12ee0db13413e89fefddfd831cd). No generated or third-party product mockups are presented as app screenshots.
 
+The public name and social-preview artwork were refreshed from the project's own HTML artwork
+sources in [the Device branding update](https://github.com/devicedaw/device/commit/2bedea2).
+The waveform design and the app screenshots remain the project's original work.
+
 | Website asset               | Original source                                           |
 | --------------------------- | --------------------------------------------------------- |
 | `assets/mark.svg`           | `docs/art/mark.svg`, Device's blue sine-wave mark         |
