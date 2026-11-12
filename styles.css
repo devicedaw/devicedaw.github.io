@@ -522,32 +522,6 @@ p {
   flex-wrap: wrap;
   gap: 12px;
 }
-.play-icon {
-  width: 0;
-  height: 0;
-  border-left: 11px solid currentColor;
-  border-block: 7px solid transparent;
-  transition: all 0.2s;
-}
-.play-sketch[aria-pressed="true"] .play-icon {
-  width: 11px;
-  height: 13px;
-  border: 0;
-  border-inline: 4px solid currentColor;
-}
-.play-sketch[aria-pressed="true"] {
-  border-color: var(--blue);
-  box-shadow:
-    0 0 0 3px rgb(39 82 245 / 0.25),
-    inset 0 1px 0 rgb(255 255 255 / 0.06);
-}
-.sketch-note {
-  margin-top: 18px;
-  color: var(--text-3);
-  font-size: 13px;
-  text-align: right;
-}
-
 /* ───────────────────────────── Reveal ───────────────────────────── */
 
 .reveal {
@@ -648,7 +622,7 @@ p {
   }
 }
 .hotspots button:hover,
-.hotspots li.open button {
+.hotspots li.is-open button {
   transform: scale(1.12);
 }
 .hotspots [role="tooltip"] {
@@ -694,15 +668,15 @@ p {
   font-weight: 600;
 }
 .hotspots li:hover [role="tooltip"],
-.hotspots li.open [role="tooltip"],
+.hotspots li.is-open [role="tooltip"],
 .hotspots button:focus-visible + [role="tooltip"] {
   opacity: 1;
   transform: translate(-50%, 0);
 }
 .hotspots li[style*="--x: 11"]:hover [role="tooltip"],
-.hotspots li[style*="--x: 11"].open [role="tooltip"],
+.hotspots li[style*="--x: 11"].is-open [role="tooltip"],
 .hotspots li[style*="--x: 79"]:hover [role="tooltip"],
-.hotspots li[style*="--x: 79"].open [role="tooltip"],
+.hotspots li[style*="--x: 79"].is-open [role="tooltip"],
 .hotspots li[style*="--x: 11"] button:focus-visible + [role="tooltip"],
 .hotspots li[style*="--x: 79"] button:focus-visible + [role="tooltip"] {
   transform: none;
@@ -1851,9 +1825,6 @@ html:not(.js) .chapter {
     flex-direction: column;
     align-items: flex-start;
     gap: 28px;
-  }
-  .sketch-note {
-    text-align: left;
   }
   .reveal {
     padding-bottom: 72px;
