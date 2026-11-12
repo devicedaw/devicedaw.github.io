@@ -39,6 +39,7 @@
   --text-3: #86878d;
   --blue: #2752f5;
   --blue-text: #8ea6ff;
+  --signal-texture: url("assets/fine-signal.webp");
   --pink: #ec5c9f;
   --orange: #de7e36;
   --yellow: #e4c64a;
@@ -50,6 +51,15 @@
   --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo,
     Consolas, monospace;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@supports (background-image: image-set(url("assets/fine-signal.avif") type("image/avif"))) {
+  :root {
+    --signal-texture: image-set(
+      url("assets/fine-signal.avif") type("image/avif"),
+      url("assets/fine-signal.webp") type("image/webp")
+    );
+  }
 }
 
 *,
@@ -381,33 +391,19 @@ p {
   justify-content: flex-end;
   isolation: isolate;
   overflow: hidden;
-  background: radial-gradient(
-      60% 55% at 72% 70%,
-      rgb(39 82 245 / 0.18),
-      transparent 70%
-    ),
-    radial-gradient(40% 40% at 10% 100%, rgb(236 92 159 / 0.07), transparent),
-    var(--ground);
+  background: var(--ground);
 }
 .hero::before {
-  /* bar lines, matching the hero ruler */
+  /* A static image keeps the fine-dot material off the animation path. */
   content: "";
   position: absolute;
   inset: 0;
   z-index: -2;
-  background: repeating-linear-gradient(
-      90deg,
-      var(--grid) 0 1px,
-      transparent 1px 100%
-    )
-    0 0 / 6.25% 100%;
-  mask-image: linear-gradient(
-    180deg,
-    transparent,
-    #000 25%,
-    #000 75%,
-    transparent
-  );
+  background-image: var(--signal-texture);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
 .hero::after {
   content: "";
@@ -493,12 +489,15 @@ p {
   margin-left: -0.05em;
 }
 .hero-accent {
-  background: linear-gradient(
+  background-image: var(--signal-texture), linear-gradient(
     92deg,
     #ffffff 0%,
     var(--blue-text) 45%,
     var(--blue) 100%
   );
+  background-size: 1000px auto, 100% 100%;
+  background-position: right center, center;
+  background-blend-mode: screen;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -522,6 +521,29 @@ p {
   flex-wrap: wrap;
   gap: 12px;
 }
+
+/* Fine Signal branding decorates marketing surfaces, never the app screenshots. */
+.plugin-band,
+.engine,
+.build {
+  position: relative;
+  isolation: isolate;
+}
+.plugin-band::before,
+.engine::before,
+.build::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--signal-texture) right center / cover no-repeat;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.engine::before { opacity: 0.3; }
+.build::before { opacity: 0.85; }
+
 /* ───────────────────────────── Reveal ───────────────────────────── */
 
 .reveal {
@@ -988,12 +1010,7 @@ html:not(.js) .chapter {
   padding: clamp(28px, 4vw, 48px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: radial-gradient(
-      80% 120% at 100% 0%,
-      rgb(39 82 245 / 0.12),
-      transparent 60%
-    ),
-    var(--panel);
+  background: var(--panel);
 }
 .plugin-copy h3 {
   margin-bottom: 14px;
@@ -1104,12 +1121,7 @@ html:not(.js) .chapter {
 .engine {
   padding: clamp(96px, 12vw, 160px) 0;
   border-top: 1px solid var(--line);
-  background: radial-gradient(
-      50% 40% at 85% 30%,
-      rgb(39 82 245 / 0.1),
-      transparent 70%
-    ),
-    var(--ground);
+  background: var(--ground);
 }
 .engine-grid {
   display: grid;
@@ -1553,12 +1565,7 @@ html:not(.js) .chapter {
 .build {
   padding: clamp(96px, 12vw, 160px) 0;
   border-top: 1px solid var(--line);
-  background: radial-gradient(
-      60% 80% at 100% 100%,
-      rgb(39 82 245 / 0.22),
-      transparent 70%
-    ),
-    linear-gradient(180deg, var(--ground), #0d1020);
+  background: var(--ground);
 }
 .build-grid {
   display: grid;
@@ -1819,7 +1826,8 @@ html:not(.js) .chapter {
     display: none;
   }
   .hero::before {
-    background-size: 12.5% 100%;
+    background-position: 65% center;
+    opacity: 0.8;
   }
   .hero-foot {
     flex-direction: column;
