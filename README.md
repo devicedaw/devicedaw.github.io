@@ -1,6 +1,6 @@
 # Device Studio website
 
-The official public website for [Device Studio](https://github.com/chrislaupama/device), an open-source digital audio workstation.
+The official public website for [Device Studio](https://github.com/devicedaw/device), an open-source digital audio workstation.
 
 **Live site:** https://devicedaw.github.io/
 
@@ -23,7 +23,7 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 ## Keep content accurate
 
 - The app is **pre-alpha**. The website links to source builds and does not advertise an available release.
-- `chrislaupama/device` remains the app repository until its separately approved transfer. After transfer, update all app links in `index.html`, the build commands and this file. Do not create a replacement app repository.
+- `devicedaw/device` is the app repository. Keep its links and clone commands current when the app repository changes location. The November 2026 ownership migration transferred the original repository; it did not recreate it.
 - Verify platform support, limitations and contribution policy against the app README before changing claims. Link to the app status table for fast-changing details.
 - Application facts and screenshots were sourced from app commit `52293a1ed939f12ee0db13413e89fefddfd831cd` on 12 November 2026. See `ASSETS.md` for asset provenance.
 - If hosting moves, update the canonical URL, Open Graph URL/image, `robots.txt` and `sitemap.xml`.

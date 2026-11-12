@@ -1,6 +1,6 @@
 # Asset provenance
 
-Existing Device Studio identity and application screenshots are reused from [chrislaupama/device at 52293a1](https://github.com/chrislaupama/device/tree/52293a1ed939f12ee0db13413e89fefddfd831cd). No generated or third-party product mockups are presented as app screenshots.
+Existing Device Studio identity and application screenshots are reused from [devicedaw/device at 52293a1](https://github.com/devicedaw/device/tree/52293a1ed939f12ee0db13413e89fefddfd831cd). No generated or third-party product mockups are presented as app screenshots.
 
 | Website asset               | Original source                                           |
 | --------------------------- | --------------------------------------------------------- |
