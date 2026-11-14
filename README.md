@@ -28,7 +28,7 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 - Application facts and screenshots were sourced from app commit `bddb701068b3783a859276080709164f03e5bc37` on 12 November 2026. See `ASSETS.md` for asset provenance and how to regenerate the images and fonts.
 - The device catalog lists the 44 built-in devices from the app README's table. Update the counts on the filter buttons when it changes.
 - If hosting moves, update the canonical URL, Open Graph URL/image, `robots.txt` and `sitemap.xml`.
-- Check desktop and mobile layouts, keyboard focus, the interface markers, the scroll tour, the device filter, the mobile menu and the copy button before publishing. Run `node --check site.js` and check all local asset paths.
+- Check desktop and mobile layouts (at least 360, 390 and 768 px wide, and a phone held sideways), keyboard focus, the interface markers, the scroll tour, the device filter, the mobile menu and the copy button before publishing. Run `node --check site.js` and check all local asset paths.
 
 ## Performance budget
 

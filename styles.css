@@ -1798,7 +1798,8 @@ html:not(.js) .chapter {
     gap: 2px;
     padding: 12px var(--gutter) 20px;
     border-bottom: 1px solid var(--line);
-    background: rgb(11 12 14 / 0.97);
+    background: var(--ground);
+    box-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.8);
   }
   .js #navigation:not([data-open="true"]) {
     display: none;
@@ -1936,6 +1937,36 @@ html:not(.js) .chapter {
     height: 64px;
     margin-bottom: 40px;
   }
+  .status-board li {
+    min-height: 0;
+  }
+}
+
+/* Touch targets: at least 44 px on phones, and on tablets with a touch screen */
+@media (max-width: 860px), (pointer: coarse) {
+  .brand,
+  .text-link {
+    min-height: 44px;
+  }
+  .footer-grid nav {
+    gap: 0;
+  }
+  .footer-grid nav a,
+  .footer-bottom a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  #copy-command {
+    height: 36px;
+    padding: 0 14px;
+  }
+  .hotspots button::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1948,15 +1979,61 @@ html:not(.js) .chapter {
   .device-grid {
     grid-template-columns: 1fr 1fr;
   }
+  /* names sit under the dot and kind label so two-line names never collide */
   .device-grid li {
-    min-height: 76px;
+    min-height: 0;
+    padding: 38px 14px 14px;
     font-size: 14px;
+    line-height: 1.3;
+  }
+  .device-grid li::before {
+    left: 14px;
+  }
+  .device-grid li::after {
+    right: 12px;
   }
   .deadline-figures {
     grid-template-columns: 1fr;
   }
+  /* wrap long commands instead of hiding them behind a sideways scroll */
   .terminal pre {
+    padding: 22px 18px 10px;
     font-size: 13px;
+    line-height: 1.7;
+    white-space: normal;
+  }
+  .t-line {
+    display: block;
+    padding-left: 2ch;
+    text-indent: -2ch;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+  .t-line + .t-line {
+    margin-top: 6px;
+  }
+  .copy-status {
+    padding: 0 18px 20px;
+  }
+  .file-card pre {
+    font-size: 12.5px;
+  }
+}
+
+/* Phones held sideways: keep the headline and the first screenshot in view */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero {
+    padding-top: 112px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 8vw, 72px);
+  }
+  #navigation {
+    max-height: calc(100svh - 64px);
+    overflow-y: auto;
+  }
+  #navigation a {
+    padding: 10px 12px;
   }
 }
 
