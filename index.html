@@ -115,23 +115,23 @@
               <div class="window-bar" aria-hidden="true">
                 <span class="dots"><i></i><i></i><i></i></span>
                 <span class="window-title">Device</span>
-                <span class="window-meta">120 BPM · 4/4</span>
+                <span class="window-meta">124 BPM · 4/4</span>
               </div>
               <div class="window-body">
                 <img
-                  src="assets/shots/automation-1440.webp"
+                  src="assets/shots/song-1440.webp"
                   srcset="
-                    assets/shots/automation-1440.webp 1440w,
-                    assets/shots/automation-2880.webp 2880w
+                    assets/shots/song-1440.webp 1440w,
+                    assets/shots/song-2880.webp 2880w
                   "
                   sizes="(min-width: 1344px) 1248px, calc(100vw - 32px)"
                   width="2880"
                   height="1552"
                   fetchpriority="high"
-                  alt="Device with automation lanes for track volume, pan and a synth's cutoff over an audio track, an instrument track and the master, with the Synth's two oscillators open below."
+                  alt="Device with a whole song in the arrangement: drums, bass, keys, lead, vocal and FX tracks across intro, verse, chorus, break and outro sections, with the lead's Synth open below."
                 />
                 <ol class="hotspots" aria-label="Parts of the interface">
-                  <li style="--x: 44.5%; --y: 6.2%">
+                  <li class="tip-below" style="--x: 44.5%; --y: 6.2%">
                     <button
                       type="button"
                       aria-label="Transport"
@@ -144,33 +144,33 @@
                       key and time signature.
                     </p>
                   </li>
-                  <li style="--x: 75%; --y: 13.8%">
+                  <li class="tip-below" style="--x: 41.7%; --y: 17.1%">
                     <button
                       type="button"
-                      aria-label="The GPU timeline"
+                      aria-label="Sections"
                       aria-describedby="hs-2"
                     >
                       <span>2</span>
                     </button>
                     <p id="hs-2" role="tooltip">
-                      <b>A GPU timeline.</b> Clips, waveforms and the playhead
-                      are drawn with wgpu, at 60 fps with thousands of clips.
+                      <b>Sections.</b> Name and colour the parts of a song.
+                      They are labels, so editing them never moves a clip.
                     </p>
                   </li>
-                  <li style="--x: 52.8%; --y: 25.5%">
+                  <li class="tip-below tip-right" style="--x: 86.8%; --y: 21.3%">
                     <button
                       type="button"
-                      aria-label="Automation lanes"
+                      aria-label="The GPU timeline"
                       aria-describedby="hs-3"
                     >
                       <span>3</span>
                     </button>
                     <p id="hs-3" role="tooltip">
-                      <b>Automation lanes.</b> Points, curves or freehand, read
-                      in the parameter's own units.
+                      <b>A GPU timeline.</b> Clips, waveforms and the playhead
+                      are drawn with wgpu, at 60 fps with thousands of clips.
                     </p>
                   </li>
-                  <li style="--x: 11.6%; --y: 76.5%">
+                  <li class="tip-left" style="--x: 11.6%; --y: 76.5%">
                     <button
                       type="button"
                       aria-label="Channel strip"
@@ -196,7 +196,7 @@
                       instruments built in.
                     </p>
                   </li>
-                  <li style="--x: 79.6%; --y: 75%">
+                  <li class="tip-below tip-left" style="--x: 7.5%; --y: 36%">
                     <button
                       type="button"
                       aria-label="Your plugins"
@@ -261,9 +261,9 @@
               <div class="media-frame">
                 <img
                   data-media="arrange"
-                  style="--o: 48% 60%; --z: 1.12"
+                  style="--o: 62% 30%; --z: 1.18"
                   class="is-active"
-                  src="assets/shots/arrange-1440.webp"
+                  src="assets/shots/song-1440.webp"
                   width="2880"
                   height="1552"
                   loading="lazy"
@@ -271,8 +271,8 @@
                 />
                 <img
                   data-media="play"
-                  style="--o: 30% 88%; --z: 1.32"
-                  src="assets/shots/pianoroll-1440.webp"
+                  style="--o: 45% 85%; --z: 1.3"
+                  src="assets/shots/pianoroll-1280.webp"
                   width="2880"
                   height="1552"
                   loading="lazy"
@@ -280,8 +280,8 @@
                 />
                 <img
                   data-media="record"
-                  style="--o: 45% 22%; --z: 1.3"
-                  src="assets/shots/recording-1440.webp"
+                  style="--o: 72% 38%; --z: 1.35"
+                  src="assets/shots/recording-1280.webp"
                   width="2880"
                   height="1552"
                   loading="lazy"
@@ -290,7 +290,7 @@
                 <img
                   data-media="shape"
                   style="--o: 55% 85%; --z: 1.22"
-                  src="assets/shots/analyzers-1440.webp"
+                  src="assets/shots/analyzers-1280.webp"
                   width="2880"
                   height="1552"
                   loading="lazy"
@@ -299,7 +299,7 @@
                 <img
                   data-media="move"
                   style="--o: 42% 85%; --z: 1.25"
-                  src="assets/shots/lfo-1440.webp"
+                  src="assets/shots/lfo-1280.webp"
                   width="2880"
                   height="1552"
                   loading="lazy"
@@ -308,7 +308,7 @@
                 <img
                   data-media="mix"
                   style="--o: 8% 85%; --z: 1.5"
-                  src="assets/shots/mixer-1440.webp"
+                  src="assets/shots/mixer-1280.webp"
                   width="2880"
                   height="1552"
                   loading="lazy"
@@ -316,8 +316,8 @@
                 />
                 <img
                   data-media="finish"
-                  style="--o: 22% 45%; --z: 1.4"
-                  src="assets/shots/export-1440.webp"
+                  style="--o: 50% 48%; --z: 1.35"
+                  src="assets/shots/export-1280.webp"
                   width="2880"
                   height="1552"
                   loading="lazy"
@@ -344,14 +344,14 @@
                   the time signature and key in the transport. ⌘D duplicates, ⌘L
                   loops, ⌘R reverses.
                 </p>
-                <div class="shot-crop" style="--o: 48% 60%; --z: 1.12">
+                <div class="shot-crop" style="--o: 62% 30%; --z: 1.18">
                   <img
                     class="chapter-shot"
-                    src="assets/shots/arrange-1440.webp"
+                    src="assets/shots/song-1440.webp"
                     width="2880"
                     height="1552"
                     loading="lazy"
-                    alt="An audio clip on the Device timeline, with its clip editor open below."
+                    alt="A song on the Device timeline: sections across the top, audio and MIDI clips on six tracks and two return tracks."
                   />
                 </div>
               </li>
@@ -369,14 +369,14 @@
                   paint dynamics. Plug in a MIDI keyboard and record what you
                   play, looped passes included.
                 </p>
-                <div class="shot-crop" style="--o: 30% 88%; --z: 1.32">
+                <div class="shot-crop" style="--o: 45% 85%; --z: 1.3">
                   <img
                     class="chapter-shot"
-                    src="assets/shots/pianoroll-1440.webp"
+                    src="assets/shots/pianoroll-1280.webp"
                     width="2880"
                     height="1552"
                     loading="lazy"
-                    alt="The piano roll with notes and the velocity lane underneath."
+                    alt="The lead's hook open in the piano roll under the song's arrangement."
                   />
                 </div>
               </li>
@@ -393,14 +393,14 @@
                   measured with an acoustic loopback test, not guessed, so a
                   recorded take lines up with the beat it was played on.
                 </p>
-                <div class="shot-crop" style="--o: 45% 22%; --z: 1.3">
+                <div class="shot-crop" style="--o: 72% 38%; --z: 1.35">
                   <img
                     class="chapter-shot"
-                    src="assets/shots/recording-1440.webp"
+                    src="assets/shots/recording-1280.webp"
                     width="2880"
                     height="1552"
                     loading="lazy"
-                    alt="Device recording a take onto an armed audio track, with the input meter showing the signal."
+                    alt="Device recording a vocal take into the break of a song, with the input meter and the vocal's analysers showing the signal."
                   />
                 </div>
               </li>
@@ -420,7 +420,7 @@
                 <div class="shot-crop" style="--o: 55% 85%; --z: 1.22">
                   <img
                     class="chapter-shot"
-                    src="assets/shots/analyzers-1440.webp"
+                    src="assets/shots/analyzers-1280.webp"
                     width="2880"
                     height="1552"
                     loading="lazy"
@@ -445,11 +445,11 @@
                 <div class="shot-crop" style="--o: 42% 85%; --z: 1.25">
                   <img
                     class="chapter-shot"
-                    src="assets/shots/lfo-1440.webp"
+                    src="assets/shots/lfo-1280.webp"
                     width="2880"
                     height="1552"
                     loading="lazy"
-                    alt="An LFO in sync mode driving a Compressor parameter."
+                    alt="An LFO in sync mode driving an Auto Filter's frequency on the FX track."
                   />
                 </div>
               </li>
@@ -466,11 +466,11 @@
                 <div class="shot-crop" style="--o: 8% 85%; --z: 1.5">
                   <img
                     class="chapter-shot"
-                    src="assets/shots/mixer-1440.webp"
+                    src="assets/shots/mixer-1280.webp"
                     width="2880"
                     height="1552"
                     loading="lazy"
-                    alt="The mixer with two return tracks: every track has a send to Return A and Return B."
+                    alt="The mixer for a whole song: six tracks, Reverb and Delay return tracks and the master."
                   />
                 </div>
               </li>
@@ -488,14 +488,14 @@
                   loop. Every edit on the way was an undoable command, so undo
                   and redo cover the whole project.
                 </p>
-                <div class="shot-crop" style="--o: 22% 45%; --z: 1.4">
+                <div class="shot-crop" style="--o: 50% 48%; --z: 1.35">
                   <img
                     class="chapter-shot"
-                    src="assets/shots/export-1440.webp"
+                    src="assets/shots/export-1280.webp"
                     width="2880"
                     height="1552"
                     loading="lazy"
-                    alt="The export dialog set up to export stems."
+                    alt="The export dialog set up to export a song as stems, one WAV file per track."
                   />
                 </div>
               </li>
