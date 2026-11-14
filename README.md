@@ -32,7 +32,7 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 
 ## Performance budget
 
-The page has no third-party requests. Keep the first view under 300 KB transferred (the Fine Signal material adds about 42 KB on browsers with AVIF support; remeasure the total when changing assets) and the whole page under 600 KB after scrolling to the end. Screenshots are lossy WebP at quality 88, fonts are Latin subsets in WOFF2, and the hero scope only animates while it is on screen.
+The page has no third-party requests. Keep the first view under 300 KB transferred (the Fine Signal material adds about 42 KB on browsers with AVIF support; remeasure the total when changing assets) and the whole page under 650 KB after scrolling to the end. Screenshots are lossy WebP (quality 72 to 84, see ASSETS.md), fonts are Latin subsets in WOFF2, and the hero scope only animates while it is on screen.
 
 ## Structure
 

@@ -670,17 +670,15 @@ p {
     opacity 0.2s,
     transform 0.2s var(--ease);
 }
-.hotspots li[style*="--y: 6"] [role="tooltip"],
-.hotspots li[style*="--y: 13"] [role="tooltip"],
-.hotspots li[style*="--y: 25"] [role="tooltip"] {
+.hotspots li.tip-below [role="tooltip"] {
   top: 24px;
   bottom: auto;
 }
-.hotspots li[style*="--x: 11"] [role="tooltip"] {
+.hotspots li.tip-left [role="tooltip"] {
   left: -10px;
   transform: translate(0, 6px);
 }
-.hotspots li[style*="--x: 79"] [role="tooltip"] {
+.hotspots li.tip-right [role="tooltip"] {
   left: auto;
   right: -10px;
   transform: translate(0, 6px);
@@ -695,12 +693,12 @@ p {
   opacity: 1;
   transform: translate(-50%, 0);
 }
-.hotspots li[style*="--x: 11"]:hover [role="tooltip"],
-.hotspots li[style*="--x: 11"].is-open [role="tooltip"],
-.hotspots li[style*="--x: 79"]:hover [role="tooltip"],
-.hotspots li[style*="--x: 79"].is-open [role="tooltip"],
-.hotspots li[style*="--x: 11"] button:focus-visible + [role="tooltip"],
-.hotspots li[style*="--x: 79"] button:focus-visible + [role="tooltip"] {
+.hotspots li.tip-left:hover [role="tooltip"],
+.hotspots li.tip-left.is-open [role="tooltip"],
+.hotspots li.tip-right:hover [role="tooltip"],
+.hotspots li.tip-right.is-open [role="tooltip"],
+.hotspots li.tip-left button:focus-visible + [role="tooltip"],
+.hotspots li.tip-right button:focus-visible + [role="tooltip"] {
   transform: none;
 }
 .reveal-caption {

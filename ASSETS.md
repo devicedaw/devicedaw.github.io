@@ -1,40 +1,44 @@
 # Asset provenance
 
 Every image of the app on this site was rendered by Device itself, from
-[devicedaw/device at bddb701](https://github.com/devicedaw/device/tree/bddb701068b3783a859276080709164f03e5bc37).
-No generated or third-party mockups are presented as app screenshots. The views show development review states,
-not a finished musical project.
+[devicedaw/device](https://github.com/devicedaw/device) with its `--showcase` option on the demo song
+"Night Drive" that `tools/art/demo_song.py` writes there (36 bars, six tracks and two returns, every
+sound synthesised by the script). No generated or third-party mockups are presented as app screenshots.
 
-| Website asset                      | Original source                                               |
-| ---------------------------------- | ------------------------------------------------------------- |
-| `assets/mark.svg`                  | `docs/art/mark.svg`, Device's blue sine-wave mark             |
-| `assets/social-preview.png`        | `docs/assets/art/social-preview.png`                          |
-| `assets/shots/automation-*.webp`   | `docs/art/shots/automation.png` (`--state review-automation`) |
-| `assets/shots/analyzers-1440.webp` | `docs/art/shots/analyzers.png` (`--state review-analyzers`)   |
-| `assets/shots/lfo-1440.webp`       | `docs/art/shots/lfo.png` (`--state reference-lfo`)            |
-| `assets/shots/arrange-1440.webp`   | rendered with `--state reference-audio-clip`                  |
-| `assets/shots/pianoroll-1440.webp` | rendered with `--state review-pr-velocity`                    |
-| `assets/shots/recording-1440.webp` | rendered with `--state review-recording`                      |
-| `assets/shots/mixer-1440.webp`     | rendered with `--state review-returns`                        |
-| `assets/shots/export-1440.webp`    | rendered with `--state review-export-stems`                   |
-| `assets/fonts/Inter-*.woff2`       | `crates/dstudio-app/ui/fonts/Inter-*.ttf`, subset to Latin    |
+| Website asset                      | Rendered with                                                |
+| ---------------------------------- | ------------------------------------------------------------ |
+| `assets/mark.svg`                  | `docs/art/mark.svg`, Device's blue sine-wave mark            |
+| `assets/social-preview.png`        | `docs/assets/art/social-preview.png`                         |
+| `assets/shots/song-*.webp`         | `--showcase arrange` (also `docs/art/shots/arrange.png`)     |
+| `assets/shots/pianoroll-1280.webp` | `--showcase pianoroll`                                       |
+| `assets/shots/recording-1280.webp` | `--showcase recording`                                       |
+| `assets/shots/analyzers-1280.webp` | `--showcase analyzers` (also `docs/art/shots/analyzers.png`) |
+| `assets/shots/lfo-1280.webp`       | `--showcase lfo` (also `docs/art/shots/lfo.png`)             |
+| `assets/shots/mixer-1280.webp`     | `--showcase mixer`                                           |
+| `assets/shots/export-1280.webp`    | `--showcase export`                                          |
+| `assets/fonts/Inter-*.woff2`       | `crates/dstudio-app/ui/fonts/Inter-*.ttf`, subset to Latin   |
 
 ## Regenerating
 
-App views are rendered the way the app's `docs/art/README.md` describes, at 2x with the Linux menu bar cropped:
+In the app repository, write the song, then render each view at 2x with the Linux menu bar cropped
+(the app's `docs/art/README.md` has the details):
 
 ```sh
+python3 tools/art/demo_song.py "/tmp/Night Drive"
 SLINT_SCALE_FACTOR=2 SLINT_WGPU_CPU=1 WGPU_BACKEND=vulkan xvfb-run -a -s "-screen 0 3200x2000x24" \
-  target/release/device-studio --no-audio --zoom 85 --state review-returns \
-  --screenshot /tmp/mixer.png --exit-after-frames 5
+  target/release/device-studio --no-audio --zoom 85 --open "/tmp/Night Drive" --timeline-zoom 52 \
+  --showcase mixer --screenshot /tmp/mixer.png --exit-after-frames 40
 magick /tmp/mixer.png -gravity north -chop 0x88 /tmp/mixer-crop.png
 ```
 
-Then convert to WebP. Only the large product view keeps a 2880-pixel version; the tour images are 1440 pixels wide.
+Then convert to WebP. The product view keeps 1440- and 2880-pixel versions; the tour images are
+1280 pixels wide at quality 72. Busy views compress less well, so remeasure the page weight
+after changing them (README › Performance budget).
 
 ```sh
-cwebp -q 88 -m 6 -sharp_yuv -resize 1440 0 /tmp/mixer-crop.png -o assets/shots/mixer-1440.webp
-cwebp -q 88 -m 6 -sharp_yuv /tmp/automation.png -o assets/shots/automation-2880.webp
+cwebp -q 72 -m 6 -sharp_yuv -resize 1280 0 /tmp/mixer-crop.png -o assets/shots/mixer-1280.webp
+cwebp -q 84 -m 6 -sharp_yuv -resize 1440 0 /tmp/arrange-crop.png -o assets/shots/song-1440.webp
+cwebp -q 72 -m 6 -sharp_yuv /tmp/arrange-crop.png -o assets/shots/song-2880.webp
 ```
 
 Fonts are subset with fontTools (`pip install fonttools brotli`):
