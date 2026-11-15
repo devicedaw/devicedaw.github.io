@@ -18,7 +18,7 @@ Open http://127.0.0.1:4173. Edit `index.html`, `styles.css` and `site.js`, then 
 
 GitHub Pages serves `/` from the `main` branch. Pushing to `main` publishes the site using GitHub's Pages build. `.nojekyll` makes this a plain static site. This repository is the organization website, so its name must remain `devicedaw.github.io` for the default root URL.
 
-No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. `dither.js` draws the hero scope, the footer wave and the 404 line as ordered-dither pixels; `site.js` animates the hero scope and adds the interface markers, the scroll tour, the device filter, mobile navigation and command copying. On phones the hero scope sits in its own band under the headline, and the product shot is cropped to the arrangement. Every section stays readable without JavaScript, and motion is switched off for visitors who ask for reduced motion.
+No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. `dither.js` draws the hero scope, the footer wave and the 404 line as ordered-dither pixels; `site.js` animates the hero scope and adds the interface markers, the scroll tour, the device filter, mobile navigation and command copying. On phones the hero scope sits in its own band under the headline. Screenshots always show in full: never crop them on phones. Every section stays readable without JavaScript, and motion is switched off for visitors who ask for reduced motion.
 
 ## Keep content accurate
 
