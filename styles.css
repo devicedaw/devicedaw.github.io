@@ -438,8 +438,9 @@ p {
 .hero-scope.is-on {
   opacity: 1;
 }
+/* Static, so the scope inside it is placed against the whole hero on wide screens. */
 .hero-content {
-  position: relative;
+  position: static;
 }
 .hero-status {
   display: inline-flex;
@@ -481,6 +482,7 @@ p {
   margin-left: -0.05em;
 }
 .hero-accent {
+  white-space: nowrap;
   background-image: var(--dither), linear-gradient(
     92deg,
     #ffffff 0%,
@@ -513,6 +515,22 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+.hero-facts li {
+  padding: 5px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgb(20 21 24 / 0.72);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 /* The dither material decorates marketing surfaces, never the app screenshots. */
@@ -729,6 +747,10 @@ p {
   letter-spacing: -0.05em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
+}
+.number small.pre {
+  margin: 0 2px 0 0;
+  vertical-align: 0.62em;
 }
 .number small {
   margin-left: 4px;
@@ -1121,108 +1143,6 @@ html:not(.js) .chapter {
   gap: clamp(32px, 5vw, 72px);
   align-items: stretch;
 }
-.stack {
-  display: flex;
-  flex-direction: column;
-}
-.layer {
-  position: relative;
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  grid-template-rows: auto auto;
-  column-gap: 20px;
-  padding: 22px 24px;
-  border: 1px solid var(--line-2);
-  border-radius: 16px;
-  background: linear-gradient(180deg, #1a1b1f, #141518);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
-}
-.layer b {
-  grid-row: 1 / 3;
-  align-self: center;
-  font-size: 26px;
-  letter-spacing: -0.03em;
-}
-.layer-tag {
-  color: var(--text-3);
-  font-family: var(--mono);
-  font-size: 12px;
-}
-.layer span:last-child {
-  color: var(--text-2);
-  font-size: 15px;
-  line-height: 1.5;
-}
-.app-layer b {
-  color: var(--blue-text);
-}
-.core-layer b {
-  color: var(--yellow);
-}
-.engine-layer {
-  border-color: rgb(236 92 159 / 0.35);
-}
-.engine-layer b {
-  color: var(--pink);
-}
-.link {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  height: 56px;
-  margin-left: 120px;
-}
-.link::after {
-  content: attr(data-label);
-  position: absolute;
-  left: calc(50% + 70px);
-  top: 50%;
-  translate: 0 -50%;
-  color: var(--text-3);
-  font-family: var(--mono);
-  font-size: 12px;
-  white-space: nowrap;
-}
-.link i {
-  position: relative;
-  width: 2px;
-  background: var(--line-2);
-  overflow: hidden;
-}
-.link i::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 2px;
-  height: 14px;
-  border-radius: 2px;
-  background: var(--blue-text);
-  animation: drop 1.6s linear infinite;
-}
-.link i:nth-child(2)::before {
-  animation-delay: 0.5s;
-}
-.link i:nth-child(3)::before {
-  animation-delay: 1.05s;
-}
-@keyframes drop {
-  from {
-    top: -14px;
-  }
-  to {
-    top: 100%;
-  }
-}
-.link {
-  justify-content: flex-start;
-  margin-left: 140px;
-  gap: 18px;
-}
-.link::after {
-  left: 72px;
-}
-
 .deadline {
   display: flex;
   flex-direction: column;
@@ -1410,51 +1330,183 @@ html:not(.js) .chapter {
   background: #dcdde1;
   color: var(--ground);
 }
-.file-card {
-  border-radius: var(--radius);
+/* ───────────────────────────── Why ───────────────────────────── */
+
+.receipt {
+  position: relative;
+  max-width: 440px;
+  justify-self: end;
+  width: 100%;
+  padding: 28px 28px 24px;
+  border-radius: var(--radius) var(--radius) 0 0;
   background: var(--ground);
   color: var(--text);
   box-shadow: 0 40px 80px -30px rgb(11 12 14 / 0.6);
-  overflow: hidden;
+  font-variant-numeric: tabular-nums;
 }
-.file-tabs {
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--line);
-  color: var(--text-3);
+.receipt::after {
+  /* a scalloped paper edge */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 7px;
+  background: radial-gradient(circle at 7px 0, var(--ground) 6.5px, transparent 7px) 0 0 / 14px 7px repeat-x;
+}
+.open .receipt-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--line-2);
+  color: var(--text-2);
   font-family: var(--mono);
   font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-.file-tabs b {
-  color: var(--text);
-  font-weight: 500;
+.receipt dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px 16px;
+  padding: 20px 0;
+  border-bottom: 1px dashed var(--line-2);
+  font-size: 16px;
 }
-.file-card pre {
-  padding: 26px 22px;
-  overflow-x: auto;
-  font-size: 14px;
-  line-height: 1.8;
-}
-.tok-k {
-  color: var(--blue-text);
-}
-.tok-s {
-  color: var(--yellow);
-}
-.tok-n {
-  color: var(--orange);
-}
-.tok-p {
+.receipt dt {
   color: var(--text-2);
 }
-.tok-c {
-  color: var(--text-3);
-  font-style: italic;
+.receipt dd {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
 }
-.file-card figcaption {
-  padding: 16px 22px 20px;
-  border-top: 1px solid var(--line);
+.open .receipt-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 18px;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.receipt-total b {
+  color: var(--text);
+  font-size: 44px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: clamp(56px, 7vw, 88px);
+  border: 1px solid #c7c8cc;
+  border-radius: var(--radius);
+  background: #c7c8cc;
+  overflow: hidden;
+}
+.reasons li {
+  padding: 28px 26px 32px;
+  background: #ecedf0;
+}
+.reasons h3 {
+  margin-bottom: 10px;
+  font-size: 19px;
+}
+.reasons p {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ───────────────────────────── Performance ───────────────────────────── */
+
+.engine-grid {
+  align-items: center;
+}
+.engine-copy h2 {
+  font-size: clamp(42px, 5.4vw, 76px);
+}
+.engine-copy .section-intro {
+  margin-top: 28px;
+}
+
+/* ───────────────────────────── Get ───────────────────────────── */
+
+.build-hint {
+  margin-top: 16px;
   color: var(--text-3);
   font-size: 14px;
+}
+.build-details {
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  background: rgb(20 21 24 / 0.85);
+}
+.build-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  cursor: pointer;
+  list-style: none;
+}
+.build-details summary::-webkit-details-marker {
+  display: none;
+}
+.build-summary {
+  display: grid;
+  gap: 4px;
+}
+.build-summary b {
+  font-size: 18px;
+}
+.build-summary span {
+  color: var(--text-2);
+  font-size: 15px;
+}
+.build-details summary i {
+  flex: none;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+}
+.build-details summary i::before,
+.build-details summary i::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 12px;
+  height: 1.5px;
+  margin: -0.75px 0 0 -6px;
+  background: currentColor;
+  transition: transform 0.25s var(--ease);
+}
+.build-details summary i::after {
+  transform: rotate(90deg);
+}
+.build-details[open] summary i::after {
+  transform: rotate(0);
+}
+.build-details summary:hover i {
+  border-color: var(--blue-text);
+}
+.build-body {
+  padding: 0 24px 24px;
+}
+.build-body > p {
+  margin-bottom: 20px;
+  color: var(--text-2);
+  font-size: 15px;
+}
+.build-body > p a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 4px;
 }
 
 /* ───────────────────────────── Status ───────────────────────────── */
@@ -1653,6 +1705,7 @@ html:not(.js) .chapter {
   display: none;
 }
 .dither-canvas {
+  width: 100%;
   display: block;
   height: 100%;
   image-rendering: pixelated;
@@ -1741,7 +1794,8 @@ html:not(.js) .chapter {
   .numbers-grid > div:nth-child(-n + 2) {
     border-bottom: 1px solid var(--line);
   }
-  .principles {
+  .principles,
+  .reasons {
     grid-template-columns: repeat(2, 1fr);
   }
   .engine-grid,
@@ -1827,9 +1881,42 @@ html:not(.js) .chapter {
   .build-grid {
     grid-template-columns: 1fr;
   }
+  /* Phones and small tablets: the headline, then the scope as its own full-bleed band,
+     so the waves never run through the text. */
   .hero {
     min-height: 0;
-    padding: 132px 0 64px;
+    padding: 128px 0 48px;
+  }
+  .hero-status {
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: min(11.8vw, 100px);
+    line-height: 0.9;
+  }
+  .hero-scope,
+  .hero-scope.is-on {
+    position: relative;
+    z-index: 0;
+    inset: auto;
+    width: calc(100% + 2 * var(--gutter));
+    max-width: none;
+    height: clamp(112px, 30vw, 200px);
+    margin: 10px calc(-1 * var(--gutter)) 6px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .hero-lead {
+    font-size: 17px;
+  }
+  .hero-actions {
+    display: grid;
+    width: 100%;
+    max-width: 420px;
+    gap: 10px;
+  }
+  .hero-actions .button {
+    justify-content: center;
   }
   .hero-ruler span:nth-child(n + 9) {
     display: none;
@@ -1840,8 +1927,9 @@ html:not(.js) .chapter {
   }
   .hero-foot {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 28px;
+    margin-top: 0;
   }
   .reveal {
     padding-bottom: 72px;
@@ -1892,30 +1980,21 @@ html:not(.js) .chapter {
     transform-origin: var(--o);
     transform: scale(var(--z));
   }
-  .hero-scope {
-    inset: 102px 0 auto;
-    height: 340px;
-  }
   .hero-status .hide-sm {
     display: none;
   }
   .principles,
+  .reasons,
   .status-board,
   .platforms {
     grid-template-columns: 1fr;
   }
+  .receipt {
+    justify-self: stretch;
+    max-width: none;
+  }
   .platform {
     padding: 24px 0 0;
-  }
-  .link {
-    margin-left: 32px;
-  }
-  .layer {
-    grid-template-columns: 1fr;
-  }
-  .layer b {
-    grid-row: auto;
-    margin: 4px 0 6px;
   }
   .scan-diagram {
     grid-template-columns: 1fr;
@@ -1979,6 +2058,25 @@ html:not(.js) .chapter {
   }
 }
 
+/* On a phone the whole window is too small to read: show the arrangement up close. */
+@media (max-width: 600px) {
+  .window-body {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0 0 15px 15px;
+  }
+  .window-body > img {
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--crop, 62% 18%);
+    transform: scale(1.3);
+    transform-origin: var(--crop, 62% 18%);
+  }
+  .hero-facts li {
+    font-size: 12.5px;
+  }
+}
+
 @media (max-width: 480px) {
   .numbers-grid {
     grid-template-columns: 1fr 1fr;
@@ -2025,9 +2123,6 @@ html:not(.js) .chapter {
   .copy-status {
     padding: 0 18px 20px;
   }
-  .file-card pre {
-    font-size: 12.5px;
-  }
 }
 
 /* Phones held sideways: keep the headline and the first screenshot in view */
@@ -2037,6 +2132,10 @@ html:not(.js) .chapter {
   }
   .hero h1 {
     font-size: clamp(40px, 8vw, 72px);
+  }
+  .hero-scope,
+  .hero-scope.is-on {
+    height: 96px;
   }
   #navigation {
     max-height: calc(100svh - 64px);
