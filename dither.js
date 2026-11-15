@@ -49,7 +49,9 @@
       const dpr = Math.min(3, devicePixelRatio || 1);
       // Whole device pixels per texel keep every square the same size.
       cell = Math.max(1, Math.round(cellCss * dpr)) / dpr;
-      const w = canvas.parentElement ? canvas.parentElement.clientWidth : canvas.clientWidth;
+      // Measure the box CSS gives the canvas, not the width set on the last resize.
+      canvas.style.width = "";
+      const w = canvas.clientWidth;
       const h = canvas.clientHeight;
       cols = Math.max(1, Math.ceil(w / cell));
       rows = Math.max(1, Math.ceil(h / cell));

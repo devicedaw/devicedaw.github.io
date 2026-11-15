@@ -281,7 +281,9 @@ const ORANGE = [
 function draw(now) {
   const t = now / 1000;
   const mid = H * 0.52;
-  const amp = Math.min(H * 0.14, 120);
+  // A short band (the phone layout) gets taller waves for its size.
+  const amp = H < 260 ? H * 0.26 : Math.min(H * 0.14, 120);
+  const spread = Math.min(1, H / 300);
   // A soft bump that follows the pointer, as if you were bending the signal.
   const bump = (x) =>
     pointerX < 0
@@ -295,7 +297,7 @@ function draw(now) {
   scope.draw([
     // Two quieter "tracks" behind the main signal, in the app's track colours.
     {
-      y: (x) => mid + 40 + Math.sin(x * k * 1.5 - drift * 0.8 + 1) * amp * 0.35,
+      y: (x) => mid + 40 * spread + Math.sin(x * k * 1.5 - drift * 0.8 + 1) * amp * 0.35,
       ramp: PINK,
       width: 1.5,
       glow: 5,
@@ -303,7 +305,7 @@ function draw(now) {
     },
     {
       y: (x) =>
-        mid - 30 + morph(x * k * 0.75 - drift * 0.6 + 2, 1 - m) * amp * 0.5,
+        mid - 30 * spread + morph(x * k * 0.75 - drift * 0.6 + 2, 1 - m) * amp * 0.5,
       ramp: ORANGE,
       width: 1.5,
       glow: 5,
