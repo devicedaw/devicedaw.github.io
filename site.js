@@ -231,8 +231,9 @@ copyButton.addEventListener("click", async () => {
 /* ───────────── Hero scope ───────────── */
 
 const canvas = $(".hero-scope");
-const ctx2d = canvas.getContext("2d");
 const hero = $(".hero");
+// Waves are drawn dithered: one texel per 3 CSS px, quantised with a Bayer matrix (dither.js).
+const scope = window.Dither.surface(canvas, 3);
 
 let W = 0;
 let H = 0;
@@ -240,14 +241,10 @@ let pointerX = -1;
 let pointerY = -1;
 let heroVisible = true;
 let rafId = 0;
+let lastFrame = -1e9;
 function resize() {
-  const dpr = Math.min(2, devicePixelRatio || 1);
-  W = canvas.clientWidth;
-  H = canvas.clientHeight;
-  canvas.width = Math.round(W * dpr);
-  canvas.height = Math.round(H * dpr);
-  ctx2d.setTransform(dpr, 0, 0, dpr, 0, 0);
-  if (reduceMotion) draw(0);
+  ({ width: W, height: H } = scope.resize());
+  draw(reduceMotion ? 0 : performance.now());
 }
 addEventListener("resize", () => W && resize(), { passive: true });
 hero.addEventListener(
@@ -261,25 +258,6 @@ hero.addEventListener(
 );
 hero.addEventListener("pointerleave", () => (pointerX = -1));
 
-function strokeWave(fn, color, width, alpha, glow) {
-  ctx2d.beginPath();
-  const step = W > 900 ? 3 : 2;
-  for (let x = 0; x <= W + step; x += step) {
-    const y = fn(x);
-    x === 0 ? ctx2d.moveTo(x, y) : ctx2d.lineTo(x, y);
-  }
-  ctx2d.globalAlpha = alpha;
-  ctx2d.strokeStyle = color;
-  ctx2d.lineWidth = width;
-  ctx2d.lineJoin = "round";
-  ctx2d.lineCap = "round";
-  ctx2d.shadowColor = glow ? color : "transparent";
-  ctx2d.shadowBlur = glow ? 18 : 0;
-  ctx2d.stroke();
-  ctx2d.globalAlpha = 1;
-  ctx2d.shadowBlur = 0;
-}
-
 // One cycle that morphs from a sine (the mark) towards a saw, by mixing harmonics.
 const morph = (phase, m) => {
   let v = Math.sin(phase);
@@ -288,9 +266,20 @@ const morph = (phase, m) => {
   return v / (1 + m * 0.75);
 };
 
+// Track colours as dim, mid and bright dither levels (the last value is alpha).
+const PINK = [
+  [236, 92, 159, 70],
+  [236, 92, 159, 150],
+  [244, 150, 192, 200],
+];
+const ORANGE = [
+  [222, 126, 54, 60],
+  [222, 126, 54, 130],
+  [236, 168, 112, 180],
+];
+
 function draw(now) {
   const t = now / 1000;
-  ctx2d.clearRect(0, 0, W, H);
   const mid = H * 0.52;
   const amp = Math.min(H * 0.14, 120);
   // A soft bump that follows the pointer, as if you were bending the signal.
@@ -303,31 +292,42 @@ function draw(now) {
   const m = 0.5 - 0.5 * Math.cos(t * 0.35);
   const k = (Math.PI * 2 * 2.2) / Math.max(W, 1);
   const drift = t * 1.1;
-  // Two quieter "tracks" behind the main signal, in the app's track colours.
-  strokeWave(
-    (x) => mid + 40 + Math.sin(x * k * 1.5 - drift * 0.8 + 1) * amp * 0.35,
-    "#ec5c9f",
-    1.5,
-    0.35,
-  );
-  strokeWave(
-    (x) => mid - 30 + morph(x * k * 0.75 - drift * 0.6 + 2, 1 - m) * amp * 0.5,
-    "#de7e36",
-    1.5,
-    0.3,
-  );
-  strokeWave(
-    (x) =>
-      mid + morph(x * k - drift, m) * amp * (1 + bump(x)) - bump(x) * amp * 0.4,
-    "#2752f5",
-    3,
-    1,
-    true,
-  );
+  scope.draw([
+    // Two quieter "tracks" behind the main signal, in the app's track colours.
+    {
+      y: (x) => mid + 40 + Math.sin(x * k * 1.5 - drift * 0.8 + 1) * amp * 0.35,
+      ramp: PINK,
+      width: 1.5,
+      glow: 5,
+      strength: 0.35,
+    },
+    {
+      y: (x) =>
+        mid - 30 + morph(x * k * 0.75 - drift * 0.6 + 2, 1 - m) * amp * 0.5,
+      ramp: ORANGE,
+      width: 1.5,
+      glow: 5,
+      strength: 0.35,
+    },
+    {
+      y: (x) =>
+        mid +
+        morph(x * k - drift, m) * amp * (1 + bump(x)) -
+        bump(x) * amp * 0.4,
+      ramp: window.Dither.BLUE,
+      width: 3,
+      glow: 9,
+      strength: 0.6,
+    },
+  ]);
 }
 
+// 30 frames a second is plenty for a dithered scope and halves the work on phones.
 function frame(now) {
-  draw(now);
+  if (now - lastFrame >= 32) {
+    lastFrame = now;
+    draw(now);
+  }
   rafId = requestAnimationFrame(frame);
 }
 function startLoop() {

@@ -39,7 +39,8 @@
   --text-3: #86878d;
   --blue: #2752f5;
   --blue-text: #8ea6ff;
-  --signal-texture: url("assets/fine-signal.webp");
+  --dither: url("assets/dither.png");
+  --dither-size: 2560px 1440px;
   --pink: #ec5c9f;
   --orange: #de7e36;
   --yellow: #e4c64a;
@@ -51,15 +52,6 @@
   --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo,
     Consolas, monospace;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-@supports (background-image: image-set(url("assets/fine-signal.avif") type("image/avif"))) {
-  :root {
-    --signal-texture: image-set(
-      url("assets/fine-signal.avif") type("image/avif"),
-      url("assets/fine-signal.webp") type("image/webp")
-    );
-  }
 }
 
 *,
@@ -394,15 +386,14 @@ p {
   background: var(--ground);
 }
 .hero::before {
-  /* A static image keeps the fine-dot material off the animation path. */
+  /* A static ordered-dither image keeps the material off the animation path. Each texel
+     is a crisp square at a whole number of pixels, anchored to the lower right. */
   content: "";
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: var(--signal-texture);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: var(--dither) right bottom / var(--dither-size) no-repeat;
+  image-rendering: pixelated;
   pointer-events: none;
 }
 .hero::after {
@@ -436,6 +427,7 @@ p {
 }
 .hero-scope {
   position: absolute;
+  image-rendering: pixelated;
   z-index: -1;
   inset: 102px 0 0;
   width: 100%;
@@ -489,14 +481,15 @@ p {
   margin-left: -0.05em;
 }
 .hero-accent {
-  background-image: var(--signal-texture), linear-gradient(
+  background-image: var(--dither), linear-gradient(
     92deg,
     #ffffff 0%,
     var(--blue-text) 45%,
     var(--blue) 100%
   );
-  background-size: 1000px auto, 100% 100%;
-  background-position: right center, center;
+  background-size: 1280px 720px, 100% 100%;
+  background-position: right bottom, center;
+  image-rendering: pixelated;
   background-blend-mode: screen;
   -webkit-background-clip: text;
   background-clip: text;
@@ -522,7 +515,7 @@ p {
   gap: 12px;
 }
 
-/* Fine Signal branding decorates marketing surfaces, never the app screenshots. */
+/* The dither material decorates marketing surfaces, never the app screenshots. */
 .plugin-band,
 .engine,
 .build {
@@ -537,7 +530,8 @@ p {
   z-index: -1;
   inset: 0;
   border-radius: inherit;
-  background: var(--signal-texture) right center / cover no-repeat;
+  background: var(--dither) right bottom / var(--dither-size) no-repeat;
+  image-rendering: pixelated;
   opacity: 0.55;
   pointer-events: none;
 }
@@ -1651,6 +1645,18 @@ html:not(.js) .chapter {
   margin: 0 0 56px;
   opacity: 0.9;
 }
+.footer-mark.is-dithered {
+  overflow: hidden;
+}
+/* dither.js swaps the vector waves for dithered ones; without JavaScript the SVG stays. */
+[data-dither-wave].is-dithered > svg {
+  display: none;
+}
+.dither-canvas {
+  display: block;
+  height: 100%;
+  image-rendering: pixelated;
+}
 .footer-mark svg {
   width: 100%;
   height: 100%;
@@ -1748,6 +1754,10 @@ html:not(.js) .chapter {
 }
 
 @media (max-width: 860px) {
+  :root {
+    /* One CSS pixel per texel: the bloom stays in proportion on small screens. */
+    --dither-size: 1280px 720px;
+  }
   :root {
     --gutter: 20px;
   }
@@ -2075,6 +2085,12 @@ html:not(.js) .chapter {
 .flatline {
   width: 100%;
   height: 80px;
+  overflow: hidden;
+}
+.flatline svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .flatline path {
   fill: none;

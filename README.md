@@ -18,7 +18,7 @@ Open http://127.0.0.1:4173. Edit `index.html`, `styles.css` and `site.js`, then 
 
 GitHub Pages serves `/` from the `main` branch. Pushing to `main` publishes the site using GitHub's Pages build. `.nojekyll` makes this a plain static site. This repository is the organization website, so its name must remain `devicedaw.github.io` for the default root URL.
 
-No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. `site.js` adds the hero scope, the interface markers, the scroll tour, the device filter, mobile navigation and command copying. Every section stays readable without JavaScript, and motion is switched off for visitors who ask for reduced motion.
+No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. `dither.js` draws the hero scope, the footer wave and the 404 line as ordered-dither pixels; `site.js` animates the hero scope and adds the interface markers, the scroll tour, the device filter, mobile navigation and command copying. Every section stays readable without JavaScript, and motion is switched off for visitors who ask for reduced motion.
 
 ## Keep content accurate
 
@@ -32,7 +32,7 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 
 ## Performance budget
 
-The page has no third-party requests. Keep the first view under 300 KB transferred (the Fine Signal material adds about 42 KB on browsers with AVIF support; remeasure the total when changing assets) and the whole page under 650 KB after scrolling to the end. Screenshots are lossy WebP (quality 72 to 84, see ASSETS.md), fonts are Latin subsets in WOFF2, and the hero scope only animates while it is on screen.
+The page has no third-party requests. Keep the first view under 300 KB transferred (the dither material is a 5 KB palette PNG; remeasure the total when changing assets) and the whole page under 650 KB after scrolling to the end. Screenshots are lossy WebP (quality 72 to 84, see ASSETS.md), fonts are Latin subsets in WOFF2, and the hero scope only animates while it is on screen, at 30 frames a second.
 
 ## Structure
 
@@ -41,7 +41,8 @@ The page has no third-party requests. Keep the first view under 300 KB transferr
 | `index.html` | Content, links, accessible controls and sharing metadata      |
 | `styles.css` | Responsive layout, using the app's colour tokens              |
 | `site.js`    | Progressive enhancement; no framework or runtime dependencies |
-| `assets/`    | App views (`shots/`), the mark, Fine Signal texture, social image and fonts    |
+| `dither.js`  | Ordered-dither renderer for the waves (no dependencies)       |
+| `assets/`    | App views (`shots/`), the mark, dither texture, social image and fonts |
 | `404.html`   | A useful return path for missing pages                        |
 
 ## License

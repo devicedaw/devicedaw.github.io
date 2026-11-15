@@ -55,16 +55,14 @@ Device artwork is covered by the source repository's AGPL-3.0-or-later license. 
 License, included beside the font files. The colours are the app's own tokens from
 `crates/dstudio-app/ui/tokens.slint`.
 
-## Fine Signal branding texture
+## Dither material
 
-`assets/fine-signal.avif` (41,945 bytes) and its WebP fallback (144,974 bytes)
-are compressed versions of `devicedaw/device`'s
-`docs/art/textures/fine-signal.png`. The original bitmap was generated for
-Device with OpenAI image generation on 13 November 2026; its exact prompt is
-kept beside the source as `fine-signal-prompt.txt`. It supplies only decorative
-blue dots and light falloff behind the website and public artwork. App views,
-the logo and desktop app styles are unchanged.
+`assets/dither.png` (5,105 bytes) is `devicedaw/device`'s `docs/art/textures/dither-site.png`, written by
+`node tools/art/dither.mjs` in that repository: a bloom toward the lower right quantised to four of the app's
+colours with an 8x8 Bayer matrix. It is shown anchored to the lower right with `image-rendering: pixelated`, two
+CSS pixels per texel on wide screens and one on screens up to 860 px wide, so every texel stays a crisp square.
+`dither.js` renders the sine waves (hero scope, footer, 404 page) with the same matrix at three CSS pixels per texel.
+App views, the logo and desktop app styles are unchanged.
 
-The social preview was rendered from the same repository's HTML artwork with
-that texture; the app screenshot inside it remains the app's own output.
-The website prefers AVIF through CSS image-set and uses WebP otherwise.
+The social preview is rendered from the same repository's HTML artwork with the dither material; the app screenshot
+inside it remains the app's own output.
