@@ -1962,11 +1962,11 @@ html:not(.js) .chapter {
     padding: 0 0 64px;
     opacity: 1;
   }
+  /* the whole screenshot, never cropped */
   .shot-crop {
     display: block;
     order: -1;
     margin-bottom: 24px;
-    aspect-ratio: 4 / 3;
     overflow: hidden;
     border: 1px solid var(--line-2);
     border-radius: 12px;
@@ -1974,11 +1974,7 @@ html:not(.js) .chapter {
   }
   .chapter-shot {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: var(--o);
-    transform-origin: var(--o);
-    transform: scale(var(--z));
+    height: auto;
   }
   .hero-status .hide-sm {
     display: none;
@@ -2058,20 +2054,7 @@ html:not(.js) .chapter {
   }
 }
 
-/* On a phone the whole window is too small to read: show the arrangement up close. */
 @media (max-width: 600px) {
-  .window-body {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: 0 0 15px 15px;
-  }
-  .window-body > img {
-    height: 100%;
-    object-fit: cover;
-    object-position: var(--crop, 62% 18%);
-    transform: scale(1.3);
-    transform-origin: var(--crop, 62% 18%);
-  }
   .hero-facts li {
     font-size: 12.5px;
   }
