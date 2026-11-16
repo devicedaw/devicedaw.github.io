@@ -1433,6 +1433,86 @@ html:not(.js) .chapter {
 
 /* ───────────────────────────── Get ───────────────────────────── */
 
+.build-side {
+  display: grid;
+  gap: 16px;
+}
+.downloads {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  background: rgb(20 21 24 / 0.85);
+  box-shadow: 0 50px 100px -40px rgb(39 82 245 / 0.45);
+}
+.download {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px 20px;
+  padding: 22px 24px;
+}
+.download + .download {
+  border-top: 1px solid var(--line);
+}
+.download-label {
+  display: grid;
+  gap: 2px;
+}
+.download-label b {
+  font-size: 18px;
+}
+.download-label span {
+  color: var(--text-2);
+  font-size: 15px;
+}
+.download .button {
+  justify-content: center;
+  min-width: 232px;
+}
+.download small {
+  grid-column: 1 / -1;
+  color: var(--text-3);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.download small a {
+  margin-left: 6px;
+  color: var(--text-2);
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.download small a:hover {
+  color: var(--text);
+}
+.download.is-yours .download-label b::after {
+  content: "Your system";
+  margin-left: 10px;
+  padding: 2px 8px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  color: var(--blue-text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 3px;
+}
+@media (max-width: 600px) {
+  .download {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .download .button {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+
 .build-hint {
   margin-top: 16px;
   color: var(--text-3);

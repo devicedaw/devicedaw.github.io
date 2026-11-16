@@ -212,6 +212,37 @@ filterButtons.forEach((button) =>
   }),
 );
 
+/* ───────────── Download for this system ───────────── */
+
+// Without JavaScript every download shows and the Mac one leads. Here the visitor's own
+// system moves to the top and gets the primary button (phones and tablets keep the default).
+{
+  const platform = (
+    navigator.userAgentData?.platform ||
+    navigator.platform ||
+    ""
+  ).toLowerCase();
+  const mobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+  const os = mobile
+    ? ""
+    : platform.startsWith("mac")
+      ? "mac"
+      : platform.startsWith("win")
+        ? "windows"
+        : platform.includes("linux")
+          ? "linux"
+          : "";
+  const mine = os && $('.download[data-os="' + os + '"]');
+  if (mine) {
+    for (const b of $$(".download .button")) {
+      b.classList.replace("primary", "ghost");
+    }
+    $(".button", mine).classList.replace("ghost", "primary");
+    mine.classList.add("is-yours");
+    mine.parentElement.prepend(mine);
+  }
+}
+
 /* ───────────── Copy build commands ───────────── */
 
 const copyButton = $("#copy-command");
