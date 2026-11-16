@@ -81,7 +81,7 @@
         <div class="shell hero-content">
           <p class="hero-status">
             <span class="led" aria-hidden="true"></span>Free and open source
-            <b aria-hidden="true">/</b> Pre-alpha
+            <b aria-hidden="true">/</b> Version 0.1
           </p>
           <h1 id="hero-title">
             Your studio.<br /><span class="hero-accent">No subscription.</span>
@@ -103,7 +103,7 @@
               <a class="button primary" href="#tour"
                 >See what it can do<span aria-hidden="true">↓</span></a
               ><a class="button ghost" href="#get"
-                >Get Device<span aria-hidden="true">→</span></a
+                >Download free<span aria-hidden="true">→</span></a
               >
             </div>
           </div>
@@ -806,7 +806,7 @@
               <h2 id="status-title">Early.<br />And moving fast.</h2>
             </div>
             <p class="section-intro">
-              Device is pre-alpha. There's no download yet, a few things are
+              Device is pre-alpha. Version 0.1 is out to try, a few things are
               still missing and the project format may still change, so keep
               copies of anything you care about. The
               <a href="https://github.com/devicedaw/device#status"
@@ -831,7 +831,7 @@
             <li class="partly"><b>Piano roll and MIDI</b><span>Partly</span><small>Hearing notes as you click them is to come</small></li>
             <li class="partly"><b>Recording</b><span>Partly</span><small>A manual latency offset per interface is to come</small></li>
             <li class="partly"><b>Windows and Linux audio</b><span>Partly</span><small>Not yet tried on a real sound card; no ASIO</small></li>
-            <li class="partly"><b>Downloads</b><span>Partly</span><small>The first release is being prepared</small></li>
+            <li class="works"><b>Downloads</b><span>Works</span><small>Version 0.1 for Mac, Windows and Linux</small></li>
           </ul>
 
           <div class="platforms">
@@ -886,30 +886,65 @@
         <div class="shell build-grid">
           <div class="build-copy">
             <p class="eyebrow"><span>Bar 07</span> Get Device</p>
-            <h2 id="get-title">Be there for<br />the first release.</h2>
+            <h2 id="get-title">Download Device.<br />Start tonight.</h2>
             <p class="section-intro">
-              Device doesn't have a download yet. Follow the releases page and
-              you'll hear the moment the first version is out for Mac, Windows
-              and Linux. It will be free, like every version after it.
+              Version 0.1 is the first release: an early version to try out,
+              make music with and tell us what breaks. It's free, like every
+              version after it.
             </p>
             <div class="build-actions">
-              <a
-                class="button primary"
-                href="https://github.com/devicedaw/device/releases"
-                >Follow the releases<span aria-hidden="true">↗</span></a
+              <a class="text-link" href="https://github.com/devicedaw/device/releases/latest"
+                >Release notes and every file<span aria-hidden="true">↗</span></a
               >
             </div>
             <p class="build-hint">
-              On GitHub, choose Watch › Custom › Releases to be notified.
+              Device is pre-alpha, so keep copies of your projects. On GitHub,
+              choose Watch › Custom › Releases to hear about new versions.
             </p>
           </div>
+          <div class="build-side">
+            <ul class="downloads" aria-label="Downloads">
+              <li class="download" data-os="mac">
+                <div class="download-label">
+                  <b>macOS</b>
+                  <span>Universal app · .dmg</span>
+                </div>
+                <a class="button primary" href="https://github.com/devicedaw/device/releases/latest/download/Device-macos-universal.dmg" download
+                  >Download for Mac<span aria-hidden="true">↓</span></a
+                >
+                <small>Not notarised yet: the first time, choose Open Anyway in
+                  System Settings › Privacy &amp; Security.</small>
+              </li>
+              <li class="download" data-os="windows">
+                <div class="download-label">
+                  <b>Windows</b>
+                  <span>x64 · installer</span>
+                </div>
+                <a class="button ghost" href="https://github.com/devicedaw/device/releases/latest/download/Device-windows-x64-setup.exe" download
+                  >Download for Windows<span aria-hidden="true">↓</span></a
+                >
+                <small>Not signed yet: choose More info › Run anyway.
+                  <a href="https://github.com/devicedaw/device/releases/latest/download/Device-windows-x64.zip" download>Portable .zip</a></small>
+              </li>
+              <li class="download" data-os="linux">
+                <div class="download-label">
+                  <b>Linux</b>
+                  <span>x86_64 · .tar.gz</span>
+                </div>
+                <a class="button ghost" href="https://github.com/devicedaw/device/releases/latest/download/Device-linux-x86_64.tar.gz" download
+                  >Download for Linux<span aria-hidden="true">↓</span></a
+                >
+                <small>Unpack it and run install.sh.
+                  <a href="https://github.com/devicedaw/device/releases/latest/download/Device-linux-aarch64.tar.gz" download>ARM64 (aarch64)</a></small>
+              </li>
+            </ul>
           <details class="build-details">
             <summary>
               <span class="build-summary">
-                <b>Can't wait? Build it yourself.</b>
+                <b>Build it yourself</b>
                 <span
                   >If you're comfortable with developer tools, you can run
-                  today's version from the source code.</span
+                  the newest code from the source.</span
                 >
               </span>
               <i aria-hidden="true"></i>
@@ -947,6 +982,7 @@
               </div>
             </div>
           </details>
+          </div>
         </div>
       </section>
     </main>
