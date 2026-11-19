@@ -34,6 +34,8 @@
   --blue-hover: #3a63ff;
   --blue-text: #8ea6ff;
   --dither: url("assets/dither.png");
+  --dither-hero: url("assets/dither-hero.png");
+  --dither-panel: url("assets/dither-panel.png");
   --shell: 1120px;
   --wide: 1248px;
   --gutter: 32px;
@@ -222,8 +224,24 @@ p {
 /* ───────────── Hero ───────────── */
 
 .hero {
+  position: relative;
   padding: 120px 0 0;
   text-align: center;
+  isolation: isolate;
+}
+/* Static ordered-dither bloom behind the app view: every texel a crisp 2 px square. */
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -120px;
+  height: 960px;
+  z-index: -1;
+  background: var(--dither-hero) center bottom / 1920px 960px no-repeat;
+  image-rendering: pixelated;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 35%, #000 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 35%, #000 80%, transparent);
 }
 .hero h1 {
   font-size: clamp(44px, 7.4vw, 88px);
@@ -261,7 +279,7 @@ p {
 .hero-shot {
   margin-top: 80px;
   border-radius: 14px;
-  box-shadow: 0 40px 120px -40px rgb(39 82 245 / 0.35);
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.7);
 }
 
 /* ───────────── Sections ───────────── */
@@ -313,6 +331,39 @@ p {
   color: var(--text-2);
   font-size: 17px;
   line-height: 1.6;
+}
+
+/* Each feature is a close-up of the app on a dithered panel. The crop sits in the
+   panel's corner and runs off its edge, so it reads as part of the app. */
+.stage {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--ground);
+  isolation: isolate;
+}
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ground) var(--dither-panel) center bottom / 960px 600px no-repeat;
+  image-rendering: pixelated;
+}
+.stage img {
+  position: absolute;
+  left: 11%;
+  top: 12%;
+  width: 78%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.75);
 }
 
 /* Sounds */
@@ -659,6 +710,14 @@ p {
   }
   .download-band::before {
     background-size: 1280px 720px;
+  }
+  .hero::before {
+    height: 480px;
+    bottom: -60px;
+    background-size: 960px 480px;
+  }
+  .stage::before {
+    background-size: 480px 300px;
   }
   .nav-link {
     display: none;

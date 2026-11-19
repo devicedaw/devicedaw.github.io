@@ -18,7 +18,7 @@ Open http://127.0.0.1:4173. Edit `index.html`, `styles.css` and `site.js`, then 
 
 GitHub Pages serves `/` from the `main` branch. Pushing to `main` publishes the site using GitHub's Pages build. `.nojekyll` makes this a plain static site. This repository is the organization website, so its name must remain `devicedaw.github.io` for the default root URL.
 
-No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. The landing page is deliberately minimal: a centred hero with one download button and the app itself, then the features (one short paragraph beside a whole screenshot each), the built-in devices, why it's free, a short FAQ and the downloads. Keep it that way: no small labels or eyebrow tags above headings, no decorative animation, and one idea per section. `site.js` only points the download buttons at the visitor's system, adds the header border on scroll and copies the build commands. Screenshots always show in full: never crop them on phones. Every section stays readable without JavaScript.
+No paid services, external fonts, analytics, cookies, package installation or custom build workflow are used. The landing page is deliberately minimal: a centred hero with one download button and the app itself, then the features (one short paragraph beside a close-up of that part of the app on a dithered panel), the built-in devices, why it's free, a short FAQ and the downloads. Keep it that way: no small labels or eyebrow tags above headings, no decorative animation, and one idea per section. `site.js` only points the download buttons at the visitor's system, adds the header border on scroll and copies the build commands. Only the hero shows the whole app; each feature shows a close-up of the part it talks about, cut from a full-resolution render (see ASSETS.md). The ordered-dither material is part of the design system: use it as static texture, never animated. Every section stays readable without JavaScript.
 
 ## Keep content accurate
 
@@ -34,7 +34,7 @@ No paid services, external fonts, analytics, cookies, package installation or cu
 
 ## Performance budget
 
-The page has no third-party requests. Keep the first view under 300 KB transferred (remeasure the total when changing assets) and the whole page under 650 KB after scrolling to the end. Screenshots are lossy WebP (quality 72 to 84, see ASSETS.md), fonts are Latin subsets in WOFF2 and nothing animates. The dither material (a 5 KB palette PNG) is a static texture behind the download section.
+The page has no third-party requests. Keep the first view under 300 KB transferred (remeasure the total when changing assets) and the whole page under 650 KB after scrolling to the end. Screenshots are lossy WebP (quality 72 to 84, see ASSETS.md), fonts are Latin subsets in WOFF2 and nothing animates. The dither textures (palette PNGs of 2 to 6 KB) sit behind the hero, the feature close-ups and the downloads.
 
 ## Structure
 
