@@ -10,12 +10,12 @@ sound synthesised by the script). No generated or third-party mockups are presen
 | `assets/mark.svg`                  | `docs/art/mark.svg`, Device's blue sine-wave mark            |
 | `assets/social-preview.png`        | `docs/assets/art/social-preview.png`                         |
 | `assets/shots/song-*.webp`         | `--showcase arrange` (also `docs/art/shots/arrange.png`)     |
-| `assets/shots/pianoroll-1280.webp` | `--showcase pianoroll`                                       |
-| `assets/shots/recording-1280.webp` | `--showcase recording`                                       |
-| `assets/shots/analyzers-1280.webp` | `--showcase analyzers` (also `docs/art/shots/analyzers.png`) |
-| `assets/shots/lfo-1280.webp`       | `--showcase lfo` (also `docs/art/shots/lfo.png`)             |
-| `assets/shots/mixer-1280.webp`     | `--showcase mixer`                                           |
-| `assets/shots/export-1280.webp`    | `--showcase export`                                          |
+| `assets/shots/close-pianoroll.webp` | `--showcase pianoroll`, cropped to the piano roll           |
+| `assets/shots/close-recording.webp` | `--showcase recording`, cropped to the take on the timeline |
+| `assets/shots/close-analyzers.webp` | `--showcase analyzers`, cropped to Tuner and Spectrum       |
+| `assets/shots/close-lfo.webp`       | `--showcase lfo`, cropped to the LFO                        |
+| `assets/shots/close-mixer.webp`     | `--showcase mixer`, cropped to the channel strips           |
+| `assets/shots/close-export.webp`    | `--showcase export`, cropped to the export dialog           |
 | `assets/fonts/Inter-*.woff2`       | `crates/dstudio-app/ui/fonts/Inter-*.ttf`, subset to Latin   |
 
 ## Regenerating
@@ -31,12 +31,17 @@ SLINT_SCALE_FACTOR=2 SLINT_WGPU_CPU=1 WGPU_BACKEND=vulkan xvfb-run -a -s "-scree
 magick /tmp/mixer.png -gravity north -chop 0x88 /tmp/mixer-crop.png
 ```
 
-Then convert to WebP. The product view keeps 1440- and 2880-pixel versions; the tour images are
-1280 pixels wide at quality 72. Busy views compress less well, so remeasure the page weight
+Then convert to WebP. The product view keeps 1440- and 2880-pixel versions. Each feature image is a
+close-up cut from the 2x render at full resolution (no resizing) and saved at quality 80, so the
+interface stays sharp; the crop boxes, in pixels of the 2880 × 1552 render, are pianoroll
+500,980–1500,1552; recording 1400,160–2600,900; analyzers 1200,940–2360,1552; lfo 530,990–1430,1552;
+mixer 0,800–1220,1552; export 960,420–2080,1120. Close-ups are composed from their top left, which
+is the corner the page always shows. Busy views compress less well, so remeasure the page weight
 after changing them (README › Performance budget).
 
 ```sh
-cwebp -q 72 -m 6 -sharp_yuv -resize 1280 0 /tmp/mixer-crop.png -o assets/shots/mixer-1280.webp
+magick /tmp/mixer-crop.png -crop 1220x752+0+800 +repage /tmp/mixer-close.png
+cwebp -q 80 -m 6 -sharp_yuv /tmp/mixer-close.png -o assets/shots/close-mixer.webp
 cwebp -q 84 -m 6 -sharp_yuv -resize 1440 0 /tmp/arrange-crop.png -o assets/shots/song-1440.webp
 cwebp -q 72 -m 6 -sharp_yuv /tmp/arrange-crop.png -o assets/shots/song-2880.webp
 ```
@@ -61,8 +66,10 @@ License, included beside the font files. The colours are the app's own tokens fr
 `node tools/art/dither.mjs` in that repository: a bloom toward the lower right quantised to four of the app's
 colours with an 8x8 Bayer matrix. It is shown anchored to the lower right with `image-rendering: pixelated`, two
 CSS pixels per texel on wide screens and one on screens up to 860 px wide, so every texel stays a crisp square.
-`dither.js` renders the sine waves (hero scope, footer, 404 page) with the same matrix at three CSS pixels per texel.
-App views, the logo and desktop app styles are unchanged.
+`assets/dither-hero.png` (the bloom behind the hero's app view) and `assets/dither-panel.png` (the bloom
+behind each feature close-up) are written by `node tools/dither-textures.mjs` in this repository, with
+the same palette and matrix. All three are shown at two CSS pixels per texel (one on phones), never
+animated.
 
 The social preview is rendered from the same repository's HTML artwork with the dither material; the app screenshot
 inside it remains the app's own output.
