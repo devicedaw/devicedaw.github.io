@@ -61,7 +61,6 @@ License, included beside the font files. The colours are the app's own tokens fr
 `node tools/art/dither.mjs` in that repository: a bloom toward the lower right quantised to four of the app's
 colours with an 8x8 Bayer matrix. It is shown anchored to the lower right with `image-rendering: pixelated`, two
 CSS pixels per texel on wide screens and one on screens up to 860 px wide, so every texel stays a crisp square.
-`dither.js` renders the sine waves (hero scope, footer, 404 page) with the same matrix at three CSS pixels per texel.
 App views, the logo and desktop app styles are unchanged.
 
 The social preview is rendered from the same repository's HTML artwork with the dither material; the app screenshot
